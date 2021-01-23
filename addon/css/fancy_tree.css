@@ -1,0 +1,28 @@
+﻿ul.fancytree-container {
+	border: 1px solid gray;
+	width: 300px;
+	overflow: hidden;
+	/* The expand animations result in ugly focus outline artefacts, so hide those. */
+	outline: 0;
+}
+
+/* Display top level nodes as accordion header. */
+ul.fancytree-container >li >.fancytree-node span.fancytree-title {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 4px;
+	margin: 0;
+	background-color: #ddd;
+	border: 1px solid #bbb;
+	font-weight: 550;
+}
+
+/* Hide  expanders for top-level nodes */
+ul.fancytree-container >li >.fancytree-node .fancytree-expander {
+	display: none;
+}
+
+/* Don't indent level-2 nodes */
+ul.fancytree-container >li >ul {
+	padding-left: 0;
+}

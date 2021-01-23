@@ -1,0 +1,90 @@
+﻿/* SIDEBAR - DEBUT */
+	.sidebar {
+		height: 100%; /* 100% Full-height */
+		width: 0; /* 0 width - change this with JavaScript */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Stay on top */
+		top: 0;
+		left: 0;
+		background-color: #333; 
+		overflow-x: hidden; /* Disable horizontal scroll */
+		padding-top: 0px; /* Place content 60px from the top */
+		transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+	}
+
+	/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+	#main {
+		transition: margin-left .5s; /* If you want a transition effect */
+		/* padding: 0px;
+		margin-top: 0px;
+		margin-left: 0px;
+		margin-right: 0px; */
+		/* margin: 0 0 0 0;
+		padding: 0; */
+	}
+
+	/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+	@media screen and (max-height: 450px) {
+		.sidebar {padding-top: 15px;}
+		.sidebar a {font-size: 18px;}
+	}
+/* SIDEBAR - FIN */
+
+/* LEFTMENU - DEBUT */
+	.lm {
+		overflow: hidden;
+		background-color: black; 
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 12px;
+		color: white;
+		text-align: center;
+	}
+
+	.lm_titre {
+		background-color: #00796B; 
+		font-family: bold Arial, Helvetica, sans-serif;
+		font-size: 18px;
+		padding: 14px 0px;
+		background-image: url('http://scottmeyer48.myds.me/allforone/picture/musketeer_epee1.svg');
+		background-repeat: no-repeat;
+		background-position-y: center;
+		background-position-x: right
+	}
+
+	.lm_info_creer {
+		background-color: gray; 
+	}
+
+	.lm_default a {
+		float: left;
+		width: 100%;
+		padding: 15px 0px;
+	}
+
+	.lm_default a:hover {
+		background-color: #E6994C;
+	}
+
+	.lm_supp a {
+		float: left;
+		width: 100%;
+		padding: 5px 0px;
+		background-color: #DD5043;
+	}
+
+	.lm_supp a:hover {
+		background-color: #C21313;
+	}
+
+	.lm_undo a {
+		float: left;
+		width: 100%;
+		padding: 5px 0px;
+		background-color: #16A05D;
+	}
+
+	.lm_undo a:hover{
+		background-color: #0D8148;
+	}
+
+/* LEFTMENU - FIN */

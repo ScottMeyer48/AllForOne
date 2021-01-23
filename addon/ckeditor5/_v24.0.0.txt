@@ -1,0 +1,2 @@
+CK Editor 5 inline version 24.0.0
+https://ckeditor.com/ckeditor-5/download/
