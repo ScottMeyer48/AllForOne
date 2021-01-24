@@ -14,8 +14,40 @@
 		quicksearch: true, // Navigate to next node by typing the first letters
 		// tooltip: true, // Use title as tooltip (also a callback could be specified)
 		clickFolderMode: 3,
+		keyPathSeparator: "/", // Used by node.getKeyPath() and tree.loadKeyPath()
 
+		// node_i.setExpanded(true);
+		// node.setExpanded();
+
+		// node.load(true).done(function(){
+		// 	node.setExpanded();
+		//   }); FancytreeNode@_2[title='PERSONNAL'] FancytreeNode@_45[title='TEAM']
+
+		// beforeSelect: function(e, data) {
+		// 	if( data.node.folder ){
+		// 		console.log('no_folder');
+		// 	  return false;
+		// 	}
+		// },
+		
+		// activate: function(e, data) {
+			// $("#tree").text(data.node.title);
+			// console.log('toto');
+			//   },
+			
 		// click: function () {
+
+		// click: function (e, data) {
+		// 	if( data.node.folder ){
+		// 		console.log('yes_folder');
+		// 	  return false;
+		// 	}
+
+			// var node = data.node;
+			// var node = tree.getNodeByKey(key);
+			// var toto = node.getKeyPath();
+			// console.log(toto);
+
 		// 	// using default options
 		// 	//Caching DOM element
 		// 	// var $myTree = $("#tree").fancytree();
@@ -30,7 +62,7 @@
 		// 	//Get the custom data attribute associated to that node
 		// 	var data = node.data;
 		// 	//data is an object so, data.content will give you the value of the attribute
-		// 	console.log(data.content);
+			// console.log(data.content);
 		// },
 
 		dblclick: function(event, data){
@@ -79,14 +111,20 @@ function TREE1_ADD_FOLDER_ENFANT() { 	// FancyTree - Add Folder Children
 	var tree = $.ui.fancytree.getTree("#tree");
 	node = tree.getActiveNode();
 
+	// click: function (e, data) {
+		// if( data.node.folder ){
+		if ( node.folder ){	// if a folder OK create sub-folder
+			newSibling = node.addChildren({
+				title: "Nouveau dossier",
+				folder: true,
+			});
+		} 
+
+
 	// var childNode = tree.addChildren({
-	newSibling = node.addChildren({
-		title: "Nouveau dossier",
 		// tooltip: "This folder and all child nodes were added programmatically.",
-		folder: true,
 		// keyss = tree.getNodeByKey()
 		// nodeee = $.ui.fancytree.getTree("#tree").getActiveNode()
-	});
 	// $.ui.fancytree.getTree("#tree").activateKey(nodeee);
 	// data.tree.activateKey("Nouveau dossier")
 	// document.getElementById('Information').value = nodeee;

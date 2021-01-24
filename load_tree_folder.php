@@ -28,7 +28,7 @@ function listFolders($dir = __DIR__ . '/datausers/tree_ckeditor') {
                     'title' => $folder,
                     'data-content' => $full_path_folder,
                     'folder' => true,
-                    'expanded'=> true,
+                    'expanded'=> false,
                     'children' => listFolders($dir . '/' . $folder, $key)
                 );
             } else { // it's a file
