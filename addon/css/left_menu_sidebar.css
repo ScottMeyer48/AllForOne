@@ -23,7 +23,7 @@
 	-ms-overflow-style: none;  /* IE and Edge */
 	scrollbar-width: none;  /* Firefox */
 	}
-	
+
 	/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 	#main {
 		transition: margin-left .5s; /* If you want a transition effect */
@@ -53,6 +53,7 @@
 	}
 
 	.lm_titre {
+		height: 22px;
 		background-color: #00796B; 
 		font-family: bold Arial, Helvetica, sans-serif;
 		font-size: 18px;
@@ -60,7 +61,19 @@
 		background-image: url('http://scottmeyer48.myds.me/allforone/picture/musketeer_epee1.svg');
 		background-repeat: no-repeat;
 		background-position-y: center;
-		background-position-x: right
+		background-position-x: right;
+
+		text-shadow:   -1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		 1px 1px 0 #000,
+		 1px 1px 2px #141414,
+		 1px 1px 3px #141414,
+		 1px 1px 5px #141414,
+		 1px 1px 7px #141414,
+		 1px 1px 10px #141414,
+		 1px 1px 12px #141414,
+		 1px 1px 18px #141414;
 	}
 
 	.lm_info_creer {
