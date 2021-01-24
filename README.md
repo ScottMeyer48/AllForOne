@@ -21,12 +21,15 @@ All resources will be available offline for deployment on an intranet/internet.
 Why AllForOne? 
 "All for one and one for all" quote from the three musketeers. Which in our case means working together rather than in a corner. 
 
-## Require
+## Install
 
-Material :
-- Apache/NGINX server with PHP5/7 language support.
+- Download ZIP this projet and copy in your server Apache/NGINX server with PHP5/7 language support.
+- Open `admin/config.ini` edit `site_url = "http://your.url/allforone"`
+- Open `addon/elFinder/elfinder.html` (elFinder auto-setup)
+- Delete `addon/elFinder/elfinder.html` and `addon/elFinder/elfinder.legacy.html`
+- Launch your site
 
-Resource :
+Ressource include :
 - [FancyTree v2.37](https://github.com/mar10/fancytree) (tree structure, navigation between documents)
 - [CK Editor 5 inline version 24.0.0](https://ckeditor.com/ckeditor-5/download/) (wysiwyg editor like Word)
 - [jquery-3.5.1.min](https://jquery.com/)
