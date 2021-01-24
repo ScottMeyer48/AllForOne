@@ -1,6 +1,8 @@
 # All For One and one for all !
  
 ## This software is under developement
+**FR** Allez dans la section WIKI pour suivre les avancements
+**EN** Go to the WIKI section to follow the progress of the project.
 DISCLAIMER
 This software is beta: Use it AT YOUR OWN RISK, or don't use it at all! I may not be held responsible for any damage it may cause, directly or indirectly.
 
