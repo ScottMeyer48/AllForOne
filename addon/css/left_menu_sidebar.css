@@ -2,16 +2,28 @@
 	.sidebar {
 		height: 100%; /* 100% Full-height */
 		width: 0; /* 0 width - change this with JavaScript */
-		position: fixed; /* Stay in place */
+		position: fixed; 
 		z-index: 1; /* Stay on top */
 		top: 0;
 		left: 0;
 		background-color: #333; 
 		overflow-x: hidden; /* Disable horizontal scroll */
+		overflow-y: scroll; /* Add the ability to scroll */
 		padding-top: 0px; /* Place content 60px from the top */
 		transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 	}
 
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.sidebar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.sidebar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	
 	/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 	#main {
 		transition: margin-left .5s; /* If you want a transition effect */
