@@ -29,7 +29,7 @@ Why AllForOne?
 
 - Download ZIP this projet and copy in your server Apache/NGINX server with PHP5/7 language support.
 - Open `admin/config.ini` edit `site_url = "https://your.url/"`
-- Open `http://your.url/allforone/addon/elFinder/elfinder.html` (elFinder auto-setup)
+- Open `http://your.url/addon/elFinder/elfinder.html` (elFinder auto-setup)
 - Delete `addon/elFinder/elfinder.html` and `addon/elFinder/elfinder.legacy.html`
 - Launch your site
 
