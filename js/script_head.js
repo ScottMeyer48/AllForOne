@@ -131,9 +131,28 @@ function TREE1_ADD_FOLDER_ENFANT() { 	// FancyTree - Add Folder Children
 	// $.ui.fancytree.getTree("#tree").activateKey("id4.3.2");
 }
 
-$(document).ready(() => {  				// QUAND LA PAGE EST CHARGER OUVRE LE PANNEAU A LATERAL ARBORESCENCE
+$(document).ready(() => {  				// QUAND LA PAGE EST CHARGER -- open panel left + Hover CSS 
 	document.getElementById("mySidebar").style.width = "310px";
+	document.getElementById("panel_title").style.width = "310px";
 	document.getElementById("main").style.marginLeft = "310px";
+});
+
+$(document).ready(function() {			// Special - CSS - on hover .panel_title and .garde change background (not possible in css)
+	$('.panel_title').hover(function() {
+		$('.panel_title').css('transition', '0s').css('background-color', '#E6994C');
+		$('.garde').css('transition', '0s').css('background-color', '#E6994C');
+	},function() {  // on mouseout, reset the background colour
+		$('.panel_title').css('background-color', '#00796B');
+		$('.garde').css('background-color', '#00796B');
+	});
+
+	$('.garde').hover(function() {
+		$('.panel_title').css('transition', '0s').css('background-color', '#E6994C');
+		$('.garde').css('transition', '0s').css('background-color', '#E6994C');
+	},function() {  // on mouseout, reset the background colour
+		$('.panel_title').css('background-color', '#00796B');
+		$('.garde').css('background-color', '#00796B');
+	});
 });
 
 function show_message(message, style) { // SNACKBAR MESSAGE (INFO - SUCCESS - WARNING)
@@ -170,35 +189,15 @@ function record_before() { 				// check if user editing document (use => if (rec
 
 function sidebar_open_close() {			// SIDEBAR - OPEN/CLOSE 
 	var sidebar_largeur = document.getElementById('mySidebar').offsetWidth;
+	document.getElementById("panel_title").style.transition = "0.5s";
 	if (sidebar_largeur == 0) { 
 		document.getElementById("mySidebar").style.width = "310px";
+		document.getElementById("panel_title").style.width = "310px";
 		document.getElementById("main").style.marginLeft = "310px";
 	}else{
 		document.getElementById("mySidebar").style.width = "0";
+		document.getElementById("panel_title").style.width = "0";
 		document.getElementById("main").style.marginLeft = "0";
-	}
-}
-
-{ // function topmenu_dropdown(num_dd)  // TOPMENU - SHOW/HIDE
-	function topmenu_dropdown(num_dd) { 		// Si click sur un bouton TOP MENU
-		for (i = 1; i < 3; i++) {
-			if (i === num_dd){ 					// affiche le DropDown demandé
-				document.getElementById("myDropdown" + i).classList.toggle("show");
-			}else{								// ferme tout les autres DropDown
-				document.getElementById("myDropdown" + i).classList.remove("show");
-			}
-		}
-	}
-	
-	window.onclick = function(e) {				// Si click ailleurs sur la page
-		if (!e.target.matches('.dropbtn')) {	// si le lieu du click n'est pas le menu
-			if (document.getElementById("myDropdown1").classList.contains('show')) {
-				myDropdown1.classList.remove('show');
-			}
-			if (document.getElementById("myDropdown2").classList.contains('show')) {
-				myDropdown2.classList.remove('show');
-			}
-		}
 	}
 }
 
@@ -256,6 +255,8 @@ function RECHARGE() {					// TEST
 }
 
 function TEST1() { 						// TEST 
+	alert('test'); 
+
 	//  function(event, data){
 					// var node = data.node;
 					// FT.debug("activate: event=", event, ", data=", data);

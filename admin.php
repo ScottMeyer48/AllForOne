@@ -1,0 +1,161 @@
+﻿<?php
+	session_start();
+	if (!isset($_SESSION['username'])) {header('Location: deco.php');} // redirection si pas de session ouverte
+	if (empty($_SESSION['username'])) {header('Location: deco.php');} // redirection si pas de session ouverte
+	$now = time(); // Checking the time now when home page starts.
+	if ($now > $_SESSION['expire']) {
+		session_destroy();
+		header('Location: deco.php');
+	}
+	// if ($_SESSION['username'] !== 'aaa') {header('Location: deco.php');}
+	$user = $_SESSION['username'];
+	$ini = parse_ini_file("admin/config.ini");
+	if ($ini['Language'] == "fr-fr"){$txt = parse_ini_file("translate/fr-fr.ini");}
+	if ($ini['Language'] == "en-en"){$txt = parse_ini_file("translate/en-en.ini");}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <!--  charset="iso-8859-1" -->
+	<meta name="robots" content="noindex, nofollow"> <!-- no referencement - private usage -->
+	<title><?php echo ($txt['site_name']);?></title>
+	<link rel="icon" type="image/svg" href="picture/musketeer_portrait.svg" />
+
+    <!-- STYLES CSS -->
+	<link rel="stylesheet" type="text/css" href="css/site_style_base.css">
+	<link rel="stylesheet" type="text/css" href="css/site_menu_top.css">
+	<link rel="stylesheet" type="text/css" href="css/site_admin.css">
+
+    <!-- SCRIPTS -->
+	<script type="text/javascript" src="js/mod_tab.js"></script> 
+	<script type="text/javascript" src="js/mod_contextual_menu.js"></script> 
+	<script>
+		var obj_contextual_menu = 'myTable'; // use with mod_contextual_menu.js
+	</script>
+
+</head>
+
+<body>
+<div class=context_menu id=context_menu>
+	<a class="contextual_menu" onclick="user_edit()">Modifier</a>
+	<a class="contextual_menu" onclick="user_del()">Supprimer</a>
+	<a class="contextual_menu" onclick="user_del()">Réinitialiser le mot de passe ?</a>
+</div>
+
+<!-- <div id="main">   -->
+	<div class="topmenu">  
+		<a href="<?php echo($ini['site_url'] . "/main.php");?>" target="" style="padding: 0 0;"><img src="picture/<?php echo($ini['logo']);?>" height="<?php echo($ini['logo_size']);?>px" width="<?php echo($ini['logo_size']);?>px" title="<?php echo($txt['site_name']);?>"></a>
+		<div class="dropdown">
+			<button class="dropbtn" onclick="topmenu_dropdown(1)">Edition du document <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
+			<div class="dropdown-content" id="myDropdown1">
+				<a href="#" id="menu_cke_edition" onclick="menu_cke_edition()">Modifier</a>
+				<a href="#" >Supprimer</a>
+				<a href="#" >Historique</a>
+			</div>
+		</div> 
+		<div class="dropdown">
+			<button class="dropbtn" onclick="topmenu_dropdown(2)">Profil <?php echo ($user);?> <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
+			<div class="dropdown-content" id="myDropdown2">
+				<a href="#">Modifier</a>
+				<?php if ($_SESSION['username'] = 'aaa'){echo "<a href='admin.php'>Admin</a>";} ?>
+				<a href="deco.php">Déconnection</a>
+			</div>
+		</div> 
+		<a>A propos</a>
+	</div>
+<!-- </div> -->
+
+<div class="in_page">
+	<h2 style="text-align: center;">Page Administration</h2>  
+	<!-- <button class="continue" onclick="test()">Enregistrer</button> -->
+	<!-- <p><input type="submit" value="Soummettre"></p> -->
+	- déverrouiller les fichiers cke en mode édition
+
+	<form action="#">
+	<fieldset>
+		<legend>Créer/modifier une entrée :</legend>
+		<table class="table_new" id="table_new">
+			<tr>
+				<th class="th_head_table">Nom</th>
+				<th class="th_head_table">Prénom</th>
+				<th class="th_head_table">Tél Portable</th>
+				<th class="th_head_table">Mot de passe</th>
+				<th class="th_head_table">email</th>
+				<th class="th_head_table">Droit CKE</th>
+				<th class="th_head_table">Droit elFinder</th>
+				<th class="th_head_table">Compte</th>
+			</tr>
+			<tr class="no_hover">
+				<td><input style="text-align: center;" id="new_input1" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input2" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input3" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input4" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input5" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input6" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input7" type="text" value="kopk"></td>
+				<td><input style="text-align: center;" id="new_input8" type="text" value="kopk"></td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<fieldset>
+		<legend id=title_list_users>Liste des utilisateurs :</legend>
+		<?php
+		function build_table($array){
+			// start table
+			$html = '<table class="myTable" id="myTable">';
+			// Filter row
+			$html .= '<tr>';
+			$ii =0;
+			foreach($array[0] as $key=>$value){
+				$html .= '<th class="filter"><input type="text" style="text-align: center;" id="myInput' . $ii . '" onkeyup="table_filtre(' . $ii . ')" placeholder="Search..."></th>';
+				$ii++;
+			}
+				$html .= '</tr>';
+				
+			// header row
+			$html .= '<tr>';
+			$ii =0;
+			foreach($array[0] as $key=>$value){
+				$html .= '<th class="curseur th_head_table" onclick="sortTable(' . $ii . ')">' . htmlspecialchars($key) . '</th>';
+				$ii++;
+			}
+			$html .= '</tr>';
+
+			// data rows
+			foreach( $array as $key=>$value){
+				$html .= '<tr onmousedown="right_click(this,event)">';
+				foreach($value as $key2=>$value2){
+					$html .= '<td>' . htmlspecialchars($value2) . '</td>';
+				}
+				$html .= '</tr>';
+			}
+
+			// finish table and return it
+
+			$html .= '</table>';
+			return $html;
+		}
+
+		$array = array(
+			array('Nom'=>'tom', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'roger', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'paul', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'frefre', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'cccc', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'tom', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'roger', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'paul', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'frefre', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'cccc', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+			array('Nom'=>'byuk', 'Prénom'=>'smith', 'Tél Portable'=>'07123456', 'Mot de passe'=>'tom@example.org', 'email'=>'example ltd', 'Droit CKE'=>'example ltd', 'Droit elFinder'=>'example ltd', 'Compte'=>'example ltd', 'Dernière connection'=>'example ltd', 'Dernier changement'=>'example ltd'),
+		);
+
+		echo build_table($array);
+	?>
+	</fieldset>
+	</form>
+</div>
+</body>
+</html>

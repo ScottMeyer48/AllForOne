@@ -1,0 +1,117 @@
+
+
+#myInput {
+    /* background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat; */
+    width: 100%;
+    /* font-size: 12px; */
+    padding: 12px 20px 12px 40px;
+    border: 4px solid black;
+    margin-bottom: 12px;
+}
+/* #myTable { */
+table {
+    /* border-collapse: collapse; */
+    width: 100%;
+    /* border: 1px solid #ddd; */
+    /* font-size: 12px; */
+    /* background-color: #E0F7D8; */
+    background-color: #E8E5E5;
+}
+
+/* tr:hover {background-color: #E6994C;} */
+/* tr.header {background-color: #E6994C;} */
+tr:hover {background-color: #E6994C;}
+
+.no_hover:hover{background-color: #E8E5E5;}
+/* #myTable th, #myTable td { */
+th, td {
+    text-align: center;
+    padding: 10px 0px;
+}
+.th_head_table{
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+/* .curseur {cursor: pointer;} */
+.filter {background-color: #E8E5E5;}
+.filter:hover {background-color: #E6994C;}
+
+/* #myTable tr { */
+/* tr { */
+    /* border-bottom: 1px solid #ddd; */
+/* } */
+
+/* #myTable tr.header, #myTable tr:hover { */
+
+fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #E8E5E5;
+}
+
+legend {
+    padding: 0px 3px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+}
+
+em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+}
+
+input:focus {
+    background: #eaeaea;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* input, textarea { */
+    /* width: 249px; */
+/* } */
+
+textarea {height: 100px;}
+
+/* select { */
+    /* width: 254px; */
+/* } */
+
+/* input[type=checkbox] {
+    width: 10px;
+}
+
+input[type=submit] {
+    width: 150px;
+    padding: 10px;
+} */
+.in_page{
+    background: #E8E5E5;
+}
+body {
+    background: #333;
+    font:  16px Arial, Helvetica, sans-serif;
+    /* background-color: #E8E5E5; */
+    /* margin: 0 0 0 0; */
+    /* padding: 0; */
+
+    /* font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+
+    /* background:rgb(217, 222, 248); */
+    /* padding: 0.0em 0.0em; haut droite bas gauche . ex:(5px 2em 0 0) Si on ne met que deux valeurs, la 1ère s'appliquera au haut et au bas, la seconde à droite et à gauche.*/
+    /* margin-top:0;
+    margin-right:1em;
+    margin-bottom:2em;
+    margin-left:0; */
+    /* color:blue; */
+    /* color: white; */
+}

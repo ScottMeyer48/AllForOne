@@ -1,140 +1,153 @@
 ﻿<?php
-	session_start();
-	$_SESSION['s_first_name'] = 'firstname ';
-	$_SESSION['s_last_name'] = 'lastname';
-	$_SESSION['s_edition'] = 'No';
-	$Fichier = 'datausers/fichier.txt';
-	// print_r($_GET);	    // affiche toutes les variables GET
-	// print_r($_POST);	    // affiche toutes les variables POST
-	$ini = parse_ini_file("admin/config.ini");
-	if ($ini['Language'] == "fr-fr"){$txt = parse_ini_file("translate/fr-fr.ini");}
-	if ($ini['Language'] == "en-en"){$txt = parse_ini_file("translate/en-en.ini");}
+session_start();
+if(isset($_POST['username']) && isset($_POST['password']))
+{
+	$username = htmlspecialchars($_POST['username']); 
+	$password = htmlspecialchars($_POST['password']);
+	if($username !== "" && $password !== "") {
+		if ( $username == 'Peter' && $password == 'zzz'){
+			$_SESSION['username'] = $username;
+			$_SESSION['start'] = time(); // Taking now logged in time.
+            $_SESSION['expire'] = $_SESSION['start'] + (60 * 60); // Ending a session in 60 minutes from the starting time. (In minutes : (30 * 60) -- In days : (n * 24 * 60 * 60 ) n = no of days)
+			header('Location: main.php');
+		}
+		else{
+			echo('<script>var connection = "fail";</script>');
+		}
+	}
+}
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <!--  charset="iso-8859-1" -->
-	<meta name="robots" content="noindex, nofollow"> <!-- no referencement - private usage -->
-	<title><?php echo ($txt['site_name']);?></title>
-	<link rel="icon" type="image/svg" href="picture/musketeer_portrait.svg" />
+<meta charset="utf-8">
+<link rel="icon" type="image/svg" href="picture/musketeer_portrait.svg" />
 
-	<!-- REQUIS -->
-	<script src="addon/jquery/jquery-3.5.1.min.js"></script>
-	<script src="addon/jquery/jquery-ui-1.12.1.min.js"></script>
+	<style>
+		body{
+			background: #333;
+			/* background: #67BE4B; */
+			font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+			margin: 0 0
+		}
 
-	<!-- CK EDITOR 5 - INLINE -->
-	<script src="addon/ckeditor5/build/ckeditor.js"></script>
-	<!-- <script>$(document).ready(() => {$.getScript("addon/ckeditor5/ckeditor_build.js");});</script> // Problem with "editor.isReadOnly = true" --> 
+		.logo_welcome{
+			padding: 10 10 10 10;
+			width:100%;
+			display: block;
+			margin: 30 auto 0 20;
+		}
 
-	<!-- ELFINDER -->
-    <script src="addon/elFinder/js/elfinder.min.js"></script>
-	
-	<!-- FANCY TREE -->
-	<link  href="addon/fancytree/skin-lion/ui.fancytree.css" rel="stylesheet" type="text/css">
-	<script src="addon/fancytree/jquery.fancytree.js" type="text/javascript"></script>
+		#container{
+			width:500px;
+			margin:0 auto;
+			margin-top:5%;
+		}
 
-    <!-- STYLES CSS -->
-    <link rel="stylesheet" type="text/css" href="addon/css/jquery-ui.min/jquery-ui.min.css"/> <!-- ELFINDER -->
-	<link rel="stylesheet" type="text/css" href="addon/css/fancy_tree.css"> 
-	<link rel="stylesheet" type="text/css" href="addon/css/ckeditor.css">
-	<link rel="stylesheet" type="text/css" href="addon/css/left_menu_sidebar.css">
-	<link rel="stylesheet" type="text/css" href="addon/css/top_menu.css">
-	<link rel="stylesheet" type="text/css" href="addon/css/page_html.css">
+		form {
+			width:100%;
+			padding: 30px;
+			border: 1px solid #f1f1f1;
+			background: #fff;
+			box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+		}
+		#container h1{
+			width: 38%;
+			margin: 0 auto;
+			padding-bottom: 10px;
+		}
 
-    <!-- SCRIPTS -->
-	<script type="text/javascript" src="addon/js/script_head.js"></script>
-	<script>
-		var cke_title_limit = <?php echo($ini['cke_title_limit']); ?>
-	</script>
+		input[type=text], input[type=password] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		input[type=text]:focus, input[type=password]:focus, .bt_login:hover {
+			box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+		}
+
+		.bt_login {
+			background-color: #00796B;
+			/* background-color: #53af57; */
+			color: white;
+			padding: 14px 20px;
+			margin: 6px 0;
+			border: 1px solid #00796B;
+			cursor: pointer;
+			width: 100%;
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		.bt_login:hover {
+			/* background-color: #B2E5B4; */
+			background-color: #E6994C;
+			/* color: white; */
+			/* color: #53af57; */
+			border: 1px solid black;
+			/* border: 1px solid #53af57; */
+		}
+
+		.bt_disabled{
+			pointer-events: none;
+			opacity: 0.4;
+		}
+
+		h1{text-align: center;}
+
+	</style>
 </head>
+<!-- height="100px" width="100px" -->
 <body>
-<div id="mySidebar" class="sidebar">  <!-- PANEL LEFT --><!-- LEFT MENU --> 
-	<div class="lm lm_titre" onclick="sidebar_open_close()"><?php echo ($txt['tree_title']);?></div>    
-	<table border="0" width="100%" style="background-color: black">
-		<tr>
-			<th colspan="3"> <div class="lm lm_info_creer"><img src="picture/down-arrow.svg" height="10px" width="10px"> &nbsp;&nbsp;&nbsp; creer &nbsp;&nbsp;&nbsp; <img src="picture/down-arrow.svg" height="10px" width="10px"></div> </th>
-			<th></th>
-		</tr>
-		<tr>
-			<td rowspan="2"> <div class="lm lm_default"><a onclick="TREE1_ADD_FILE()">Fichier</a></div> </td>
-			<td rowspan="2"> <div class="lm lm_default"><a onclick="TREE1_ADD_FOLDER()">Dossier</a></div> </td>
-			<td rowspan="2"> <div class="lm lm_default"><a onclick="TREE1_ADD_FOLDER_ENFANT()">Sous-dossier</a></div> </td>
-			<td><div class="lm lm_supp"> <a onclick="TREE1_ADD_FOLDER_ENFANT()" >Supprimer</a> </div> </td>
-		</tr>
-		<tr>
-			<td><div class="lm lm_undo" id="lm_bt_undo"> <a onclick="TREE1_ADD_FOLDER_ENFANT()" > Undo</a> </div> </td>
-		</tr>
-	</table>
-	<div id="tree"></div>  <!-- HERE - ARBRE - FANCY TREE  --> 
-</div> 
 
-<div id="main">  
-	<div class="topmenu"> <!-- TOP MENU  -->
-		<a onclick="sidebar_open_close()" class="garde"><img src="picture/<?php echo($ini['logo_open']);?>" height="<?php echo($ini['logo_open_size']);?>px" width="<?php echo($ini['logo_open_size']);?>px" title="<?php echo($txt['logo_open_title']);?>"></a>
-		<a href="<?php echo($ini['site_url'] . "/index.php");?>" target="" style="padding: 0 0"><img src="picture/<?php echo($ini['logo']);?>" height="<?php echo($ini['logo_size']);?>px" width="<?php echo($ini['logo_size']);?>px" title="<?php echo($txt['site_name']);?>"></a>
-		<div class="dropdown">
-			<button class="dropbtn" onclick="topmenu_dropdown(1)">Edition du document <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
-			<div class="dropdown-content" id="myDropdown1">
-				<a href="#" id="menu_cke_edition" onclick="menu_cke_edition()">Modifier</a>
-				<a href="#" >Supprimer</a>
-				<a href="#" >Historique</a>
-				<!-- <a type="button" onclick="Modification()">Entrer en modification</a> -->
-				<!-- <a href="#">Quitter la modification sans enregistrer</a> -->
-			</div>
-		</div> 
-		<div class="dropdown">
-			<button class="dropbtn" onclick="topmenu_dropdown(2)">Profil <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
-			<div class="dropdown-content" id="myDropdown2">
-				<a href="#">Modifier</a>
-				<!-- <a >truc</a> -->
-				<a href="">Déconnection</a>
-			</div>
-		</div> 
-		<!-- <a onclick="show_message((editor.getData()), 'info')">get1</a> -->
-		<a>A propos</a>
-		<a onclick="show_message('test', 'info')">MsgBox</a>
-		<a onclick="TREE_GET_2()">test</a>
-		<!-- <a style="cursor:help" onclick="show_record('bt_record_cke','show')">show record</a> -->
-		<!-- <a style="cursor:help" onclick="show_record('bt_record_cke','hide')">hide record</a> -->
-		<a id="bt_record_cke"  style="display: none" class="bt_record" onclick="post_server()">Enregistrer</a> <!-- here Button record -->
-		<textarea id="Information" rows="1" placeholder="Peter.Pan(ThisDocument,read) Chuck.Norris(OtherDocument,write) Harry.Potter(BigDocument,read)"></textarea>
-	</div>
-		<!-- <button type="button" onclick="Modification()">Modification</button> -->
-		<!-- <button type="button" onclick="RECUP_TITRE()">CK5 récup Titre</button> -->
-		<!-- <button onclick="show_message('www', 'warning')">Show Snackbar</button>(INFO - SUCCESS - WARNING) -->
+	<div id="container">
+	<div><img class="logo_welcome" src="picture/musketeer_portrait.svg" height="100px" width="100px"></div>
+		<form action="index.php" method="POST" id="form_login">
+			<h1>All For One</h1>
+			
+			<label><b>Nom d'utilisateur</b></label>
+			<input type="text" placeholder="Entrer le nom d'utilisateur" id="user" name="username" onkeypress="enter_pressed(event)" required>
 
-	<div id="message_block"> </div>
+			<label><b>Mot de passe</b></label>
+			<input type="password" placeholder="Entrer le mot de passe" id="pass" name="password" onkeypress="enter_pressed(event)" required>
 
-	<?php
-		{	// ENREGISTREMENT POST DU CONTENU DE CKEDITOR
-			if (isset($_POST['CK_FULL_FOR_POST'])) { 							// Si il y a la variable POST dans l'URL 
-				if (empty($_POST['CK_FULL_FOR_POST'])) {							// si c'est vide 
-					unlink($Fichier);                  			// Supprime le fichier
-					file_put_contents($Fichier,'');    			// écrit le fichier
-					echo "<script> $(document).ready(() => {show_message('\"{$Fichier}\" a bien était supprimé !', 'success')}); </script>";
-				}
-				else { 													// Si "editor1" n'est pas vide  
-					file_put_contents($Fichier,$_POST['CK_FULL_FOR_POST']); // remplace le contenu de "fichier.txt" par celui de "editor1"
-					echo "<script> $(document).ready(() => {show_message('\"{$Fichier}\" a bien était enregistré !', 'success')}); </script>";
-					// echo "<script> document.getElementById('Information').value = 'Fichier enregistré !'; </script>"; 
+			<input type="button" id='bt_login' class="bt_login" onclick="bt_submit()" value="Connection">
+			<div style="color: red;  font-weight: bold; text-align: center;" id='info'> </div>
+			<?php
+			if(isset($_GET['erreur'])){
+				$err = $_GET['erreur'];
+				if($err==1 || $err==2){
+					echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
 				}
 			}
-			// Lecture du fichier en prévision de l'injecter dans CKEDITOR - - - ATTENTION PEUT ETRE PREVOIR UNE PAUSE AVANT DE LIRE LE FICHIER ? en prévision de fichier lourde
-			$Contenu = file_get_contents($Fichier, true); 			 
-		};
-	?>
-	<br>
-	<br>
-	<form action="index.php" method="post" id="form_cke">
-		<textarea name="CK_FULL_FOR_POST" id="CK_FULL_FOR_POST" hidden data-sample-short ></textarea> <!-- TIPS CKE5 Ballon n'accepte pas un textarea qui est indispensable pour la method_post -->
-		<textarea name="CK_TITRE_FOR_POST" id="CK_TITRE_FOR_POST" hidden data-sample-short ></textarea> <!-- TIPS CKE5 Ballon n'accepte pas un textarea qui est indispensable pour la method_post -->
-		<div class="editor" name="editor" id="editor" > <?php echo $Contenu; ?> </div> 	<!-- HERE - CKEDITOR  -->
-	</form> 
-	
-	<!-- CKEDITOR PARAMETRES -->
-	<script type="text/javascript" src="addon/ckeditor5/ckeditor_build.js"></script>
-	<script type="text/javascript"> editor.isReadOnly = true;</script>
-</div>
+			?>
+		</form>
+	</div>
+
+	<script>
+		function enter_pressed(e) {
+			if (e.keyCode == 13) { bt_submit(); }
+		}
+
+		function bt_submit() {
+			if (document.getElementById('user').value == "" || document.getElementById('pass').value == ""){
+				document.getElementById('info').innerHTML = 'Remplissez les champs utilisateur et mot de passe';
+			}
+			else{
+				document.getElementById("bt_login").disabled = true;
+				document.getElementById("bt_login").classList.add('bt_disabled');
+				document.forms["form_login"].submit();
+			}
+		}
+		if (typeof connection !== "undefined"){
+			if (connection == "fail") {
+				document.getElementById('info').innerHTML = 'Vérifiez le nom utilisateur / mot de passe';
+			} 
+		}
+	</script>
+
 </body>
 </html>

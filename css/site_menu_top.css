@@ -1,0 +1,104 @@
+﻿.topmenu {
+	height: var(--height_tm);
+	/* height: 80px; */
+	overflow: hidden;
+	background-color:var(--color_bckg);
+	font-family: Arial, Helvetica, sans-serif;
+	width: 100%;
+	border: none;
+	outline: none;
+	margin: 0 0;
+	padding: 0 0;
+	top: 0;
+}
+.tm_img_size {
+	height: 45px;
+	width: 45px;
+}
+.topmenu .bt_record {
+	color: var(--color_tm_text_lvl0);
+	background-color: var(--color_green);
+	font: bold 16px Arial, Helvetica, sans-serif;
+	cursor: pointer;
+}
+
+.topmenu .bt_record:hover {background-color: var(--color_green_hover);}
+.topmenu a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {background-color:var(--color_tm_hover); }
+
+.topmenu a {
+	float: left;
+	font-size: 16px;
+	color: var(--color_tm_text_lvl0);
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.topmenu .garde {
+	padding: 0 0; 
+	background-color: var(--color_main);
+
+}
+.topmenu .tm_logo{
+	padding: 0 0; 
+
+}
+/* .garde, .tm_logo { */
+	/* padding: 0 0;  */
+	/* transition: 0.5s;  */
+/* } */
+
+/* .garde { */
+	/* background-color: yellow; */
+	/* width: var(--height_tm); */
+	/* height: var(--height_tm); */
+/* } */
+
+.dropdown {
+	float: left;
+	/* overflow: hidden; */
+	/* z-index: 100; */
+	/* position: sticky; */
+	/* position: static; */
+}
+
+.dropdown .dropbtn {
+	cursor: pointer;
+	font-size: 16px;  
+	border: none;
+	outline: none;
+	color: var(--color_tm_text_lvl0);
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+	position: relative;
+	/* position: fixed; */
+	z-index: 10;
+}
+
+.dropdown:hover .dropdown-content {	display: block; }
+
+.dropdown-content {
+	display: none;
+	background-color: var(--color_tm_bckg_lvlsub);
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	position: absolute;
+	/* position: fixed; */
+	/* position: relative; non */
+	/* position: sticky ; non */
+	/* position: static ; non */
+	z-index: 10;
+}
+
+.dropdown-content a {
+	float: none;
+	color: var(--color_tm_text_lvlsub);
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {	background-color: var(--color_tm_hover); }

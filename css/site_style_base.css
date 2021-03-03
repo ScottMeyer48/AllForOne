@@ -1,4 +1,20 @@
-﻿/* message_block - BEGIN - bottom and in the middle of the screen  */
+﻿:root {
+	/* general  */
+		--color_bckg: #333;
+		--color_main: #00796B;
+		--color_body: black;
+	/* Top Menu */
+		--color_tm_hover: #E6994C;
+		--color_green: #0D8148;
+		--color_green_hover: #16A05D;
+		--color_tm_text_lvl0: white;
+		--color_tm_text_lvlsub: black;
+		--color_tm_bckg_lvlsub: #ffc183;
+		/* --color_tm_bckg_lvlsub_hover: #E6994C; */
+		--height_tm: 50px;
+}
+
+/* message_block - BEGIN - bottom and in the middle of the screen  */
 	#message_block {
 		visibility: hidden; /* Hidden by default. Visible on click */
 		min-width: 250px; /* Set a default minimum width */
@@ -45,7 +61,14 @@
 		from {bottom: 30px; opacity: 1;}
 		to {bottom: 0; opacity: 0;}
 	}
-/* SNACKBAR - END   */
+/* message_block - END   */
+html { 
+    height:100%;
+}
+body { 
+	height:100%;
+    /* min-height:100%; */
+}
 
 body {
     font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -57,7 +80,9 @@ body {
     margin-bottom:2em;
     margin-left:0; */
     /* color:blue; */
-	background-color: #333;
+	/* background-color: var(--color_body); */
+	/* background-color: yellow; */
+	/* background-color: #333; */
 	margin: 0 0 0 0;
 	padding: 0;
 	/* color: white; */
@@ -80,4 +105,27 @@ textarea {
 	background-color: #f8f8f8;
 	font-size: 10px;
 	resize: none;
+}
+
+.contextual_menu{
+	font-size: 14px;
+    float: none;
+    /* background-color: #E8E5E5; */
+    padding: 10px 20px 10px 20px;
+    display: block;
+}
+
+.contextual_menu:hover{
+    cursor: pointer;
+    background-color: var(--color_tm_hover);
+}
+
+.context_menu{
+    position: absolute;
+    border: 2px solid #000000;
+    /* margin-bottom: 12px; */
+    background-color: var(--color_tm_bckg_lvlsub);
+    border-style: solid;
+    z-index: 10;
+    display: none;
 }

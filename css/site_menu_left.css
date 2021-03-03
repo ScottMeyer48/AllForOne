@@ -1,0 +1,46 @@
+﻿/* MENU LEFT */
+.lm {
+	overflow: hidden;
+	background-color: #333; 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: white;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.lm_info_creer {
+	background-color: gray; 
+}
+
+.lm_default a {
+	float: left;
+	width: 100%;
+	padding: 15px 0px;
+}
+
+.lm_default a:hover {
+	background-color: #E6994C;
+}
+
+.lm_supp a {
+	float: left;
+	width: 100%;
+	padding: 5px 0px;
+	background-color: #DD5043;
+}
+
+.lm_supp a:hover {
+	background-color: #C21313;
+}
+
+.lm_undo a {
+	float: left;
+	width: 100%;
+	padding: 5px 0px;
+	background-color: #16A05D;
+}
+
+.lm_undo a:hover{
+	background-color: #0D8148;
+}
