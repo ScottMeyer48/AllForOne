@@ -5,7 +5,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 	$username = htmlspecialchars($_POST['username']); 
 	$password = htmlspecialchars($_POST['password']);
 	if($username !== "" && $password !== "") {
-		if ( $username == 'Peter' && $password == 'zzz'){
+		if ( $username == 'Demo' && $password == 'Demo'){
 			$_SESSION['username'] = $username;
 			$_SESSION['start'] = time(); // Taking now logged in time.
             $_SESSION['expire'] = $_SESSION['start'] + (60 * 60); // Ending a session in 60 minutes from the starting time. (In minutes : (30 * 60) -- In days : (n * 24 * 60 * 60 ) n = no of days)
