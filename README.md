@@ -39,6 +39,7 @@ Ressource include :
 - [jquery-3.5.1.min](https://jquery.com/)
 - [jquery-ui-1.12.1.min](https://jqueryui.com/)
 - [elFinder version 2.1.57](https://github.com/Studio-42/elFinder) (file explorer)
+- [Config_Lite](https://github.com/pear/Config_Lite)
 
 ## Screenshot
 
