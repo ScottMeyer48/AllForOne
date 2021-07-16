@@ -31,6 +31,7 @@ Why AllForOne?
 - Open `admin/config.ini` edit `site_url = "https://your.url/"`
 - Open `http://your.url/addon/elFinder/elfinder.html` (elFinder auto-setup)
 - Delete `addon/elFinder/elfinder.html` and `addon/elFinder/elfinder.legacy.html`
+- with your FTP increased rights for authorised php to write on your server, on the folder `/admin` and `/datausers`
 - Launch your site
 
 Ressource include :
