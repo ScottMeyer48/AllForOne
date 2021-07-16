@@ -8,11 +8,11 @@
 		// $debug->alert('toto');
 		// $debug->log('hello world');
 
-	if(session_status() != 2) {	session_start(); } else { header('Location: deco.php'); } // (2 = session active) if don't active session
-	if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {header('Location: deco.php');} // redirection si pas de session ouverte
+	if(session_status() != 2) {	session_start(); } else { header('Location: admin/deco.php'); } // (2 = session active) if don't active session
+	if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {header('Location: admin/deco.php');} // redirection si pas de session ouverte
 	if (time() > $_SESSION['expire']) {
 		session_destroy();
-		header('Location: deco.php');
+		header('Location: admin/deco.php');
 	}else {
 		$user = $_SESSION['username'];
 		$_SESSION['expire'] = time() + (60 * 60); // Ending a session in 60 minutes from the starting time. (In minutes : (30 * 60) -- In days : (n * 24 * 60 * 60 ) n = no of days)
@@ -116,8 +116,8 @@
 			<button class="dropbtn" >Profil: <?php echo ($user);?> <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
 			<div class="dropdown-content" >
 				<a href="#">Modifier</a>
-				<?php if ($user == 'Demo') echo "<a href='admin.php'>Admin</a>";?>
-				<a href="deco.php">Déconnection</a>
+				<?php if ($user == 'Demo') echo "<a href='admin/admin.php'>Admin</a>";?>
+				<a href="admin/deco.php">Déconnection</a>
 			</div>
 		</div> 
 		<div class="dropdown">
