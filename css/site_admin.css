@@ -12,9 +12,9 @@
 }
 /* #myTable { */
 table {
-    /* border-collapse: collapse; */
+    border-collapse: collapse;
     width: 100%;
-    /* border: 1px solid #ddd; */
+    /* border: 1px solid rgb(0, 0, 0); */
     /* font-size: 12px; */
     /* background-color: #E0F7D8; */
     background-color: #E8E5E5;
@@ -29,6 +29,7 @@ tr:hover {background-color: #E6994C;}
 th, td {
     text-align: center;
     padding: 10px 0px;
+    border: 1px solid #cfcdcd;
 }
 .th_head_table{
     background-color: #333;

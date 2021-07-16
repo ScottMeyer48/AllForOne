@@ -1,12 +1,35 @@
 ﻿<?php
-session_start();
+// if(session_status() == 2) {header('Location: main.php');} // (2 = session active) if don't active session
+
+// session_start();
+// if(session_status() === '2') { header('Location: main.php');}
+// if(session_status() === '2' || $_SESSION['username'] = 'tfsdfsdoto') { header('Location: main.php');}
+// if($_SESSION['username'] = 'tfsdfsdoto') 
+// { 
+// 	echo  'TROUVE';
+// 	header('Location: main.php');
+// }else{
+// 	echo  'NON TROUVE';
+// }
+
+// if(session_status() === PHP_SESSION_ACTIVE || $_SESSION['username'] = 'toto') { header('Location: main.php');}
+
 if(isset($_POST['username']) && isset($_POST['password']))
 {
 	$username = htmlspecialchars($_POST['username']); 
 	$password = htmlspecialchars($_POST['password']);
+
 	if($username !== "" && $password !== "") {
 		if ( $username == 'Demo' && $password == 'Demo'){
+			session_destroy();
+			session_start();
 			$_SESSION['username'] = $username;
+
+			// LOG HISTORY
+			$now = time();
+			file_put_contents(__DIR__ . '/admin/log_connection.txt',chr(13) . date('Y/m/d H:i:s', $now) . ' - log on - ' . $_SESSION['username'], FILE_APPEND);
+			$now = '';
+
 			$_SESSION['start'] = time(); // Taking now logged in time.
             $_SESSION['expire'] = $_SESSION['start'] + (60 * 60); // Ending a session in 60 minutes from the starting time. (In minutes : (30 * 60) -- In days : (n * 24 * 60 * 60 ) n = no of days)
 			header('Location: main.php');

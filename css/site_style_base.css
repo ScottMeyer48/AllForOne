@@ -29,34 +29,37 @@
 		left: 50%; /* Center the snackbar */
 		bottom: 30px; /* 30px from the bottom */
 	}	
-
-	#message_block.success {background-color: #4CAF50;}
-	#message_block.info {background-color: #2196F3;}
-	#message_block.warning {background-color: #ff9800;}
-
-	#message_block.show {
-		visibility: visible; 
-		/* -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; */
+	.message_block.show {
+		visibility: visible;
 		-webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
 		animation: fadein 0.5s, fadeout 0.5s 3.5s;
-		/* animation: fadein 0.5s, fadeout 0.5s 2.5s; */
+	}
+	  
+	#message_block.success {background-color: #4CAF50;}
+	#message_block.info {background-color: #2196F3;}
+	#message_block.warning {background-color: #ff2600;}
+
+	#message_block.show {
+		/* animation-play-state: initial; */
+		/* -webkit-animation: fadein 0s, fadeout 0s 0s;
+		animation: fadein 0s, fadeout 0s 0s; */
+		visibility: visible; 
+		-webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+		animation: fadein 0.5s, fadeout 0.5s 3.5s;
 	}
 
 	@-webkit-keyframes fadein {
 		from {bottom: 0; opacity: 0;}
 		to {bottom: 30px; opacity: 1;}
 	}
-
 	@keyframes fadein {
 		from {bottom: 0; opacity: 0;}
 		to {bottom: 30px; opacity: 1;}
 	}
-
 	@-webkit-keyframes fadeout {
 		from {bottom: 30px; opacity: 1;}
 		to {bottom: 0; opacity: 0;}
 	}
-
 	@keyframes fadeout {
 		from {bottom: 30px; opacity: 1;}
 		to {bottom: 0; opacity: 0;}
@@ -69,7 +72,6 @@ body {
 	height:100%;
     /* min-height:100%; */
 }
-
 body {
     font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     
@@ -87,12 +89,10 @@ body {
 	padding: 0;
 	/* color: white; */
 }
-
 p {
     margin: 0 0;
     padding: 0;
 }
-
 textarea {
 	/* margin-left: 0px; */
 	/* margin-left: 410px; */
@@ -106,20 +106,20 @@ textarea {
 	font-size: 10px;
 	resize: none;
 }
-
 .contextual_menu{
 	font-size: 14px;
     float: none;
     /* background-color: #E8E5E5; */
-    padding: 10px 20px 10px 20px;
+    padding: 5px 20px 10px 20px;
     display: block;
 }
-
 .contextual_menu:hover{
     cursor: pointer;
     background-color: var(--color_tm_hover);
 }
-
+.hide_child{display: block;}
+.hide_root{display: block;}
+.hide_help{display: block;}
 .context_menu{
     position: absolute;
     border: 2px solid #000000;

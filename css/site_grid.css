@@ -95,13 +95,15 @@
 		1px 1px 12px #141414,
 		1px 1px 18px #141414;
 }
-.tree, .cke { /* warning put after ".title, .menu, .tree, .cke" rewrite height*/
+
+/* warning put after ".title, .menu, .tree, .cke" rewrite height */
+/* .tree, .cke {  */
 	/* position: fixed;  */
 	/* background-color: #79001e;  */
 	/* height: 100%; */
 	/* max-height: 100%; */
 	
-}
+/* } */
 .cke {
 	top: var(--height_tm);
 	/* top: 100px; */

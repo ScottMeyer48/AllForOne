@@ -1,19 +1,11 @@
 window.addEventListener("DOMContentLoaded", (event) => { 			// wait document full loaded
-    document.getElementById("myTable").oncontextmenu = (e) => { 
-        e.preventDefault();											// desactivate right click mouse on table "myTable"
-    }
-    document.getElementById("context_menu").oncontextmenu = (e) => { 
-        e.preventDefault();											// desactivate right click mouse on table "context_menu"
-    }
-
     var a = document.getElementById("myTable").getElementsByTagName("tr");
-        for (var i=0; i<a.length; i++){
-            b = a[i].getElementsByTagName("td");
-            nb_users = (i+1);
-            document.getElementById('title_list_users').innerHTML = "Liste des utilisateurs : (" + nb_users + ") (Clic droit sur la liste pour plus d'options)"; // compte le nombre d'entrée
-        }
+    for (var i=0; i<a.length; i++){         // compte le nombre d'entrée
+        b = a[i].getElementsByTagName("td");
+        nb_users = (i+1);
+        document.getElementById('title_list_users').innerHTML = "Liste des utilisateurs : (" + nb_users + ") (Clic droit sur la liste pour plus d'options)"; 
+    }
 });
-
 
 function table_filtre(filter_col) { // hide line on demand filter 
     var input, filter, table, tr, td, i, txtValue;
