@@ -1,17 +1,24 @@
 ﻿:root {
 	/* general  */
-		--color_bckg: #333;
-		--color_main: #00796B;
-		--color_body: black;
+	--color_bckg: #333;
+	--color_main: #00796B;
+	--color_body: black;
+	--panel_open: 310px;
+	--panel_close: 0px;
 	/* Top Menu */
-		--color_tm_hover: #E6994C;
-		--color_green: #0D8148;
-		--color_green_hover: #16A05D;
-		--color_tm_text_lvl0: white;
-		--color_tm_text_lvlsub: black;
-		--color_tm_bckg_lvlsub: #ffc183;
-		/* --color_tm_bckg_lvlsub_hover: #E6994C; */
-		--height_tm: 50px;
+	--color_green: #0D8148;
+	--color_green_hover: #16A05D;
+	--color_tm_txt_read: #47794A;
+	--color_tm_bckg_read: #E8F2CC;
+	--color_tm_txt_write: #EA0043;
+	--color_tm_bckg_write: #F2CED8;
+	--color_tm_write: #E4E346;
+	--color_tm_txt_lvl_1: white;
+	--color_tm_txt_lvl_2: black;
+	--color_tm_bckg_lvl_1: #E6994C;
+	--color_tm_bckg_lvl_2: #ffc183;
+	/* --color_tm_bckg_lvlsub_hover: #E6994C; */
+	--height_tm: 50px;
 }
 
 /* message_block - BEGIN - bottom and in the middle of the screen  */
@@ -65,57 +72,71 @@
 		to {bottom: 0; opacity: 0;}
 	}
 /* message_block - END   */
-html { 
+/* html { 
     height:100%;
-}
-body { 
-	height:100%;
-    /* min-height:100%; */
-}
+} */
 body {
+	height:100%;
     font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    
-    /* background:rgb(217, 222, 248); */
-    /* padding: 0.0em 0.0em; haut droite bas gauche . ex:(5px 2em 0 0) Si on ne met que deux valeurs, la 1ère s'appliquera au haut et au bas, la seconde à droite et à gauche.*/
-    /* margin-top:0;
-    margin-right:1em;
-    margin-bottom:2em;
-    margin-left:0; */
-    /* color:blue; */
-	/* background-color: var(--color_body); */
-	/* background-color: yellow; */
-	/* background-color: #333; */
 	margin: 0 0 0 0;
 	padding: 0;
-	/* color: white; */
+	background-color:var(--color_bckg);
 }
-p {
+.main {
+	display: grid; 
+    grid-template-columns: 310px 1fr; 
+    grid-template-rows: 50px calc(100vh - 50px); 
+    gap: 0px 0px; 
+    grid-template-areas: 
+	"left_top right_top_menu"
+	"left_tree right_cke"; 
+	background-color:var(--color_bckg);
+	/* background-color: #2196F3; */
+
+}
+.left_top { grid-area: left_top; 
+    text-align: right;
+}
+.left_tree { grid-area: left_tree; 
+	/* pointer-events:none; */
+	/* vertical-align: top; */
+    /* color:red; */
+}
+.right_top_menu { grid-area: right_top_menu; }
+.right_cke { grid-area: right_cke; 
+}
+/* p {
     margin: 0 0;
     padding: 0;
-}
-textarea {
+} */
+/* textarea { */
 	/* margin-left: 0px; */
 	/* margin-left: 410px; */
-	width: 600px;
-	height: 2em;
 	/* padding: 12px 20px; */ 
+	/* width: 600px;
+	height: 2em;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
 	border-radius: 4px;
 	background-color: #f8f8f8;
 	font-size: 10px;
 	resize: none;
-}
+} */
 .contextual_menu{
-	font-size: 14px;
+    font:  16px Arial, Helvetica, sans-serif;
     float: none;
-    /* background-color: #E8E5E5; */
+    background-color: var(--color_bckg);
     padding: 5px 20px 10px 20px;
     display: block;
+	color: var(--color_tm_txt_lvl_1);
 }
 .contextual_menu:hover{
-    cursor: pointer;
-    background-color: var(--color_tm_hover);
+	cursor: pointer;
+    background-color: var(--color_tm_bckg_lvl_1);
+}
+.contex_menu_img{
+	height : 15px;
+	width : 15px;
 }
 .hide_child{display: block;}
 .hide_root{display: block;}
@@ -128,4 +149,34 @@ textarea {
     border-style: solid;
     z-index: 10;
     display: none;
+}
+.panel_title{
+	color: white;
+	text-align: center;
+	/* vertical-align:middle; */
+	font:  18px bold Arial, Helvetica, sans-serif;
+
+	/* line-height: var(--height_tm);   */
+	line-height: 49px;  
+	/* center vertical */
+
+	/* transition: 0.5s;  */
+	border-collapse: collapse;
+	background-color: var(--color_main); 
+	background-image: url('../picture/musketeer_epee1.svg');
+	background-repeat: no-repeat;
+	background-position-y: center;
+	background-position-x: right;
+
+	text-shadow:   -1px -1px 0 #000,  
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+		1px 1px 0 #000,
+		1px 1px 2px #141414,
+		1px 1px 3px #141414,
+		1px 1px 5px #141414,
+		1px 1px 7px #141414,
+		1px 1px 10px #141414,
+		1px 1px 12px #141414,
+		1px 1px 18px #141414;
 }

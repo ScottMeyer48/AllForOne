@@ -4,9 +4,25 @@ if (end_url == 'main.php'){
     window.onload = function () {
         // desactivate right click mouse on table "context_menu"
         document.getElementById("context_menu").oncontextmenu = (e) => {e.preventDefault();}  
-        // desactivate right click mouse on table 
-        document.getElementById(obj_contextual_menu).oncontextmenu = (e) => {e.preventDefault();} 
-        }
+        // desactivate right click mouse on TREE
+        // toto = 'stop';
+        // if (toto == 'stop2'){
+            // document.getElementById(obj_contextual_menu).onclick = (e) => {
+            //     console.log('onclick');
+            //     e.preventDefault();} 
+            // document.getElementById(obj_contextual_menu).onmousedown = (e) => {
+            //     console.log('onmousedown');
+            //     e.preventDefault();} 
+            // $('tree').click(false);
+            document.getElementById(obj_contextual_menu).oncontextmenu = (e) => {e.preventDefault();} 
+
+
+        // } 
+        // document.getElementById("left_tree").oncontextmenu = (e) => {
+            // console.log('click droit');
+            // e.preventDefault();
+        // } 
+    }
 }
 if (end_url == 'admin.php'){
     var obj_contextual_menu = 'tab_context_menu';
@@ -20,6 +36,7 @@ if (end_url == 'admin.php'){
         }
     }
 }
+// bt_record_show('hide');
 
 
 // window.addEventListener("DOMContentLoaded", (event) => { 			// wait document full loaded
@@ -43,26 +60,32 @@ if (end_url == 'admin.php'){
 //     document.getElementById("context_menu").oncontextmenu = (e) => {e.preventDefault();}        // desactivate right click mouse on table "context_menu"
 // });
 
-function right_click(x,ev) {    // hover table user on right click show context menu
+function right_click(x,ev) {
     if (ev.button == 2)         // 2 = right click mouse
     {
+        on_right_click = 'stop'; // stop load page on right click (see fancytree.js) 
         var mouse_x = ev.clientX;
         var mouse_y = ev.clientY;
         document.elementFromPoint(mouse_x, mouse_y).click();
         
         if (obj_contextual_menu == ('tree') && node !== '') {
+            
+            // Disable contextuel menu on tree if editing cke editor
+            if (context_menu == 'disable'){ return; }
+
             title_node = node.title;
             Height_tree = document.getElementById('ft-id-1').offsetHeight; // Hauteur de Treeview
             
-            // If right click under FancyTree or click on folder root don't show contextuel menu - RICHARD REVOIR NB PIXEL MANUEL
-            if ((mouse_y - 55) > Height_tree || title_node === ('PERSONNAL')) {return;} 
+            // If right click under FancyTree
+            var myElement = document.querySelector("#ft-id-1"); 
+            var position = getPosition(myElement);
+            if ((mouse_y - position.y) > Height_tree || title_node === ('PERSONNAL')) {return;} 
             
-            var ct_menu = document.getElementById("context_menu");
-            ct_menu.style.display = "block";    // show contextuel menu
+            ct_menu = document.getElementById("context_menu");
+            ct_menu.style.display = "block";    // show fancytree contextuel menu 
 
             // show delete elements
             document.getElementsByClassName("view_del")[0].style.display = "block";
-            // document.getElementsByClassName("view_file")[0].style.display = "block";
             document.getElementsByClassName("view_folder")[0].style.display = "block";
 
             // hide elements 
@@ -72,17 +95,16 @@ function right_click(x,ev) {    // hover table user on right click show context 
                 document.getElementsByClassName("view_folder")[0].style.display = "none";
                 document.getElementsByClassName("view_del")[0].style.display = "none";
             }else if (title_node === ('TEAM')) {
-                // document.getElementsByClassName("view_file")[0].style.display = "none";
                 document.getElementsByClassName("view_del")[0].style.display = "none";
             }else if (!node.folder) { // if it's a file
                 document.getElementsByClassName("view_folder")[0].style.display = "none";
             }
 
             // BLOCK axis Y contextuel menu to bottom windows
-                var max_bottom = window.innerHeight - ct_menu.offsetHeight; // - height context_menu - top_menu 
-                if ( mouse_y > max_bottom ) {ct_menu.style.top = max_bottom+"px";
-                }else {ct_menu.style.top = mouse_y+"px";}
-                ct_menu.style.left = mouse_x+"px";
+            var max_bottom = window.innerHeight - ct_menu.offsetHeight; // - height context_menu - top_menu 
+            if ( mouse_y > max_bottom ) {ct_menu.style.top = max_bottom+"px";
+            }else {ct_menu.style.top = mouse_y+"px";}
+            ct_menu.style.left = mouse_x+"px";
         }
         
         // Active on table - page administration
@@ -123,6 +145,33 @@ function user_edit(){ // put row line to input form for edit
 
 function user_del(){ // delete entry with method POST and reload page
     alert('sup');
+}
+
+// Helper function to get an element's exact position
+function getPosition(el) {
+    // var xPos = 0;
+    var yPos = 0;
+
+    while (el) {
+        if (el.tagName == "BODY") {
+        // deal with browser quirks with body/window/document and page scroll
+        // var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+        var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+        // xPos += (el.offsetLeft - xScroll + el.clientLeft);
+        yPos += (el.offsetTop - yScroll + el.clientTop);
+        } else {
+        // for all other non-BODY elements
+        // xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+        yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+        }
+
+        el = el.offsetParent;
+    }
+    return {
+        // x: xPos,
+        y: yPos
+    };
 }
 
 { // function topmenu_dropdown(num_dd)  // TOPMENU - SHOW/HIDE

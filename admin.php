@@ -12,7 +12,7 @@
 		$_SESSION['expire'] = time() + (60 * 60); // Ending a session in 60 minutes from the starting time. (In minutes : (30 * 60) -- In days : (n * 24 * 60 * 60 ) n = no of days)
 	}	
 
-	$ini = parse_ini_file("config.ini");
+	$ini = parse_ini_file("admin/config.ini");
 	if ($ini['Language'] == "fr-fr"){$txt = parse_ini_file("translate/fr-fr.ini");}
 	if ($ini['Language'] == "en-en"){$txt = parse_ini_file("translate/en-en.ini");}
 
@@ -27,27 +27,27 @@
 	<link rel="icon" type="image/svg" href="../picture/musketeer_portrait.svg" />
 
     <!-- STYLES CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/site_style_base.css">
-	<link rel="stylesheet" type="text/css" href="../css/top_menu.css">
-	<link rel="stylesheet" type="text/css" href="../css/site_admin.css">
+	<link rel="stylesheet" type="text/css" href="css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/top_menu.css">
+	<link rel="stylesheet" type="text/css" href="css/site_admin.css">
 
     <!-- SCRIPTS -->
-	<script type="text/javascript" src="../js/site.js"></script>  				<!-- 3 -->
-	<script type="text/javascript" src="../js/mod_tab.js"></script>			<!-- 1 -->
-	<script type="text/javascript" src="../js/top_menu.js"></script> 			<!-- 2 -->
-	<script type="text/javascript" src="../js/contextual_menu.js"></script> 	<!-- 4 -->
+	<script type="text/javascript" src="js/site.js"></script>  				<!-- 3 -->
+	<script type="text/javascript" src="js/mod_tab.js"></script>			<!-- 1 -->
+	<script type="text/javascript" src="js/top_menu.js"></script> 			<!-- 2 -->
+	<script type="text/javascript" src="js/contextual_menu.js"></script> 	<!-- 4 -->
 </head>
 
 <body>
 <div class=context_menu id=context_menu>
-	<a class="contextual_menu" onclick="user_edit()"><img src="../picture/icon-edit.svg" alt="Folder" style="width:15px;height:15px;">&ensp; Modifier</a>
-	<a class="contextual_menu" onclick="user_del()"><img src="../picture/icon-remove.svg" alt="Folder" style="width:15px;height:15px;">&ensp; Supprimer</a>
-	<a class="contextual_menu" onclick="user_del()"><img src="../picture/icon-cadena.svg" alt="Folder" style="width:15px;height:15px;">&ensp; Réinitialiser le mot de passe ?</a>
+	<a class="contextual_menu" onclick="user_edit()"><img src="picture/icon-edit.svg" class="contex_menu_img" alt="Edit">&ensp; Modifier</a>
+	<a class="contextual_menu" onclick="user_del()"><img src="picture/icon-remove.svg" class="contex_menu_img" alt="Delete">&ensp; Supprimer</a>
+	<a class="contextual_menu" onclick="user_del()"><img src="picture/icon-cadena.svg" class="contex_menu_img" alt="Reinit password">&ensp; Réinitialiser le mot de passe ?</a>
 </div>
 
 <!-- <div id="main">   -->
 	<div class="topmenu">  
-		<a href="<?php echo($ini['site_url']."/main.php");?>" target="" style="padding: 0 0;"><img src="../picture/<?php echo($ini['logo']);?>" height="<?php echo($ini['logo_size']);?>px" width="<?php echo($ini['logo_size']);?>px" title="<?php echo($txt['site_name']);?>"></a>
+		<a href="<?php echo($ini['site_url']."/main.php");?>" target="" style="padding: 0 0;"><img src="picture/<?php echo($ini['logo']);?>" height="<?php echo($ini['logo_size']);?>px" width="<?php echo($ini['logo_size']);?>px" title="<?php echo($txt['site_name']);?>"></a>
 		<!-- <div class="dropdown">
 			<button class="dropbtn" onclick="topmenu_dropdown(1)">Edition du document <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
 			<div class="dropdown-content" id="myDropdown1">
@@ -57,7 +57,7 @@
 			</div>
 		</div>  -->
 		<div class="dropdown">
-			<button class="dropbtn" onclick="topmenu_dropdown(2)">Profil <?php echo ($user);?> <img src="../picture/down-arrow.svg" height="10px" width="10px"></button>
+			<button class="dropbtn" onclick="topmenu_dropdown(2)">Profil <?php echo ($user);?> <img src="picture/down-arrow.svg" height="10px" width="10px"></button>
 			<div class="dropdown-content" id="myDropdown2">
 				<a href="#">Modifier</a>
 				<?php if ($user == 'Demo') echo "<a href='admin.php'>Admin</a>";?>

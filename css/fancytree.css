@@ -4,6 +4,7 @@
 	overflow: hidden;
 	/* The expand animations result in ugly focus outline artefacts, so hide those. */
 	outline: 0;
+	z-index: 1; 
 }
 
 /* Display top level nodes as accordion header. */
