@@ -37,10 +37,11 @@ Why AllForOne?
 Ressource include :
 - [FancyTree v2.37](https://github.com/mar10/fancytree) (tree structure, navigation between documents)
 - [CK Editor 5 classic version 24.0.0](https://ckeditor.com/ckeditor-5/download/) (wysiwyg editor like Word)
-- [jquery-3.5.1.min](https://jquery.com/)
+- [jquery-3.6.0.min](https://jquery.com/)
 - [jquery-ui-1.12.1.min](https://jqueryui.com/)
 - [elFinder version 2.1.57](https://github.com/Studio-42/elFinder) (file explorer)
 - [Config_Lite](https://github.com/pear/Config_Lite) (ini file configuration with php)
+- [Zebra_Dialog](https://github.com/stefangabos/Zebra_Dialog) (Modal message box)
 
 ## Screenshot
 
